@@ -6,7 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 
-internal expect fun currentNanoTime(): Long
+expect fun currentNanoTime(): Long
 
 internal expect val CloseButtonSize: Dp
 

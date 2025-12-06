@@ -9,7 +9,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
 import platform.CoreFoundation.CFAbsoluteTimeGetCurrent
 
-internal actual fun currentNanoTime(): Long = (CFAbsoluteTimeGetCurrent() * 1000000000).toLong()
+actual fun currentNanoTime(): Long = (CFAbsoluteTimeGetCurrent() * 1000000000).toLong()
 
 internal actual val CloseButtonSize: Dp = 24.dp
 

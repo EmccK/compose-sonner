@@ -8,7 +8,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
 
-internal actual fun currentNanoTime(): Long = org.jetbrains.skiko.currentNanoTime()
+actual fun currentNanoTime(): Long = org.jetbrains.skiko.currentNanoTime()
 
 internal actual val CloseButtonSize: Dp = 20.dp
 

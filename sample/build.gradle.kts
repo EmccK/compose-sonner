@@ -1,6 +1,6 @@
-import org.jetbrains.compose.ExperimentalComposeLibrary
+@file:Suppress("OPT_IN_USAGE")
+
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -10,9 +10,10 @@ plugins {
 }
 
 kotlin {
-    @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
-        moduleName = "composeApp"
+        compilerOptions {
+            outputModuleName.set("composeApp")
+        }
         browser {
             commonWebpackConfig {
                 outputFileName = "composeApp.js"
@@ -22,7 +23,9 @@ kotlin {
     }
 
     js(IR) {
-        moduleName = "composeApp-jscanvas"
+        compilerOptions {
+            outputModuleName.set("composeApp-jscanvas")
+        }
         browser {
             commonWebpackConfig {
                 outputFileName = "composeApp-jscanvas.js"
@@ -32,10 +35,8 @@ kotlin {
     }
     
     androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "11"
-            }
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
         }
     }
 
@@ -64,7 +65,6 @@ kotlin {
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.ui)
-            @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
             implementation(projects.sonner)
         }

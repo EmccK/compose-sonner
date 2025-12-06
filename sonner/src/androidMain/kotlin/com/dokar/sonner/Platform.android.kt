@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import androidx.compose.ui.window.Popup
 
-internal actual fun currentNanoTime(): Long = System.nanoTime()
+actual fun currentNanoTime(): Long = System.nanoTime()
 
 internal actual val CloseButtonSize: Dp = 24.dp
 

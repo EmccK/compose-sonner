@@ -1,5 +1,6 @@
+@file:Suppress("OPT_IN_USAGE")
+
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -10,9 +11,10 @@ plugins {
 }
 
 kotlin {
-    @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
-        moduleName = "compose-sooner"
+        compilerOptions {
+            outputModuleName.set("compose-sooner")
+        }
         browser {
             commonWebpackConfig {
                 outputFileName = "compose-sooner.js"
@@ -26,7 +28,9 @@ kotlin {
         binaries.library()
     }
     js(IR) {
-        moduleName = "compose-sooner-jscanvas"
+        compilerOptions {
+            outputModuleName.set("compose-sooner-jscanvas")
+        }
         browser {
             commonWebpackConfig {
                 outputFileName = "compose-sooner-jscanvas.js"
@@ -42,10 +46,8 @@ kotlin {
 
     androidTarget {
         publishLibraryVariants("release")
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "11"
-            }
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
         }
     }
 
